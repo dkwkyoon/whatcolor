@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOTD</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        .dongle-light {
+          font-family: "Dongle", sans-serif;
+          font-weight: 300;
+          font-style: normal;
+        }
+
+        .dongle-regular {
+          font-family: "Dongle", sans-serif;
+          font-weight: 400;
+          font-style: normal;
+        }
+
+        .dongle-bold {
+          font-family: "Dongle", sans-serif;
+          font-weight: 700;
+          font-style: normal;
+          font-size: 4rem;
+        color: white;
+        -webkit-text-stroke: 1.5px black;
+        }
+
+
+        body {
+            background-image: url(bg.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; 
+            margin: 0
+        }
+
+      
+       .pad {padding: 80px 0px 50px 0px}
+
+        .shirt {
+            width: 140px;
+            height: 190px;
+            background-color: black;
+            position: relative;
+            transition: background-color 0.5s; 
+            border-radius: 10px 10px 0 0; }
+
+         .arm {
+            position: absolute;
+            width: 40px;
+            height: 160px;
+            background-color: #F5DEB3;
+            border-radius: 20px; 
+        }
+
+        .arm.left {
+            left: -30px; 
+            transform: rotate(15deg);  }
+
+        .arm.right {
+            right: -30px;
+            transform: rotate(-15deg);  }
+
+
+        .collar {
+            width: 70px;
+            height: 30px;
+            background-color: white;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0 0 30px 30px;
+        }
+
+     
+        .face {
+            width: 110px; 
+            height: 110px; 
+            background-color: #F5DEB3;
+            border-radius: 50%; 
+            position: absolute;
+            top: -110px; 
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;}
+
+        .hair {width: 110px; 
+            height: 110px; 
+            background-color: black;
+            border-radius: 50%;
+            position: absolute;
+            clip-path: inset(0 0 70px 0);}
+    
+        .eye {
+            width: 11px;
+            height: 11px;
+            background-color: black; 
+            border-radius: 50%;
+            margin: 18px;}
+
+        .mouth {
+            width: 20px;
+            height: 20px;
+            background-color: red; 
+            border-radius: 50%; 
+            position: absolute;
+            clip-path: inset(10px 0 0 0);
+            top: 68px;}
+  
+        .pants {
+            width: 140px; 
+            height: 210px; 
+            background-color: white; 
+            position: relative; 
+            transition: background-color 0.5s;}
+
+        .pants::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0; 
+            height: 80%; 
+            width: 2px; 
+            background-color: black; 
+            transform: translateX(-50%);}
+
+    
+        .shoes {
+            display: flex; 
+            justify-content: center; }
+
+        .shoe {
+            width: 60px; 
+            height: 30px; 
+            background-color: #000; 
+            border-radius: 10px; 
+            margin: 0 5px; }
+
+     
+        button {
+            padding: 4px 20px;
+            border-radius: 13px;
+            cursor: pointer;
+            font-family: "Dongle", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 1.6rem;
+            margin:0px 5px 0 5px;}
+
+
+    </style>
+</head>
+<body>
+    <section>
+<h1 class="dongle-bold">어떤 <span style="color: ">색</span>의 옷을 입을까?</h1>
+    </section>    
+
+<section class="pad">
+    <div class="shirt" id="shirt">
+         <div class="arm left"></div>
+    <div class="arm right"></div>
+        <div class="collar"></div>
+        <div class="face"> 
+        <div class="hair"></div>
+            <div class="eye"></div> 
+            <div class="eye"></div> 
+            <div class="mouth"></div> 
+        </div>
+    </div>
+    <div class="pants" id="pants"></div>
+    <div class="shoes"> 
+        <div class="shoe" id="leftShoe"></div> 
+        <div class="shoe" id="rightShoe"></div> 
+    </div>
+
+</section>
+<section>
+    <button onclick="changeShirtColor()">상의 색상 고르기</button>
+    <button onclick="changePantsColor()">하의 색상 고르기</button>
+    <button onclick="changeShoesColor()">신발 색상 고르기</button>
+</section>
+    <script>
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function changePantsColor() {
+            const pantsElement = document.getElementById('pants');
+            const randomColor = getRandomColor(); 
+            pantsElement.style.backgroundColor = randomColor;
+        }
+
+        function changeShirtColor() {
+            const shirtElement = document.getElementById('shirt');
+            const randomColor = getRandomColor(); 
+            shirtElement.style.backgroundColor = randomColor;
+        }
+
+        function changeShoesColor() {
+            const leftShoeElement = document.getElementById('leftShoe');
+            const rightShoeElement = document.getElementById('rightShoe');
+            const randomColor = getRandomColor(); 
+            leftShoeElement.style.backgroundColor = randomColor;
+            rightShoeElement.style.backgroundColor = randomColor; 
+
+        }
+
+
+  
+    </script>
+
+</body>
+</html>
